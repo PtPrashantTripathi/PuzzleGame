@@ -1,3 +1,3 @@
 # Fifteen-Puzzle
 
-[https://prashanttripathi.me/Fifteen-Puzzle/](https://prashanttripathi.me/Fifteen-Puzzle/)
+[https://ptprashanttripathi.github.io/Fifteen-Puzzle/](https://ptprashanttripathi.github.io/Fifteen-Puzzle/)
