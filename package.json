@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/PtPrashantTripathi/Fifteen-Puzzle#readme",
   "dependencies": {
-    "express": "^4.17.2",
+    "express": "^4.18.2",
     "path": "^0.12.7"
   }
 }
