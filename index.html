@@ -1,39 +1,99 @@
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Fifteen-Puzzle</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta
+      name="description"
+      content="Fifteen-Puzzle game created by PtPrashantTripathi. Test your puzzle-solving skills with this fun game!"
+    />
+    <meta
+      name="keywords"
+      content="Fifteen-Puzzle, puzzle game, PtPrashantTripathi, logic game, brain teaser"
+    />
+    <meta name="author" content="PtPrashantTripathi" />
+    <meta property="og:title" content="Fifteen-Puzzle" />
+    <meta
+      property="og:description"
+      content="Fifteen-Puzzle game created by PtPrashantTripathi. Test your puzzle-solving skills with this fun game!"
+    />
+    <meta property="og:image" content="logo.png" />
+    <meta
+      property="og:url"
+      content="https://ptprashanttripathi.github.io/Fifteen-Puzzle/"
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:title" content="Fifteen-Puzzle" />
+    <meta
+      name="twitter:description"
+      content="Fifteen-Puzzle game created by PtPrashantTripathi. Test your puzzle-solving skills with this fun game!"
+    />
+    <meta name="twitter:image" content="logo.png" />
+    <meta
+      name="twitter:card"
+      content="https://ptprashanttripathi.github.io/Fifteen-Puzzle/8"
+    />
+    <!--link rel="stylesheet" type="text/css" href="css/style.css" /-->
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C4NJD8J3MD"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-C4NJD8J3MD"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-  gtag('config', 'G-C4NJD8J3MD');
-</script>
-</head>
-<body>
-    <center>
-        <form>
-            <label for="grid">Choose puzzle grid size :</label>
-            <select id="grid" name="grid">
-                <option>select</option>
-                <option value="2">2x2</option>
-                <option value="3">3x3</option>
-                <option value="4">4x4</option>
-                <option value="5">5x5</option>
-            </select>
-            <input type="submit">
-        </form>
-        <div class="game">
-            <table id="puzzle"></table>
-            <span id="moves"></span>
-            <br>
-            <span id="msg"></span>
+      gtag("config", "G-C4NJD8J3MD");
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+  </head>
+  <body>
+    <div class="container center-align">
+      <form>
+        <div class="input-field">
+          <select id="grid" name="grid">
+            <option value="" disabled selected>Select grid size</option>
+            <option value="2">2x2</option>
+            <option value="3">3x3</option>
+            <option value="4">4x4</option>
+            <option value="5">5x5</option>
+          </select>
+          <label>Choose puzzle grid size:</label>
         </div>
-    </center>
+        <button
+          class="btn waves-effect waves-light"
+          type="submit"
+          name="action"
+        >
+          Submit
+        </button>
+      </form>
+      <div class="center-align">
+        <div class="card-panel game">
+          <table id="puzzle"></table>
+          <span id="moves"></span>
+          <br />
+          <span id="msg"></span>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var elems = document.querySelectorAll("select");
+        var instances = M.FormSelect.init(elems);
+      });
+    </script>
     <script src="js/Fifteen-Puzzle.js"></script>
-</body>
+  </body>
 </html>
