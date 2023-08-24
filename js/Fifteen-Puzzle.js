@@ -1,7 +1,7 @@
 //grid size
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-var G = urlParams.has("grid") ? urlParams.get("grid") : 3;
+var G = urlParams.has("grid") ? urlParams.get("grid") : 4;
 var moves = 0;
 //initial puzzle
 var solved_puzzle = [];
