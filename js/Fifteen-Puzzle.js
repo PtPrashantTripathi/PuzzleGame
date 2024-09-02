@@ -1,134 +1,220 @@
-//grid size
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-var G = urlParams.has("grid") ? urlParams.get("grid") : 4;
-var moves = 0;
-//initial puzzle
-var solved_puzzle = [];
-for (var i = 1; i < G ** 2; i++) {
-  solved_puzzle.push(i);
-}
-solved_puzzle.push(0);
+class Puzzle {
+  constructor(gridSize = 4) {
+    this.gridSize = gridSize;
+    this.moves = 0;
+    this.solvedPuzzle = this.generateSolvedPuzzle();
+    this.data = this.jumble();
+  }
 
-//inhearted function
-var canBoardWin = (array) => {
-  // Check if Start board is the same after ramdomize
-  let startBoardPosition = array.every((el, i) => {
-    return el === solved_puzzle[i];
-  });
-  if (startBoardPosition) return false;
-
-  // Check can board win
-  let p = 0;
-  let row = 0;
-  let blankRow = 0;
-  for (let i = 0; i < array.length; i++) {
-    if (i % G == 0) row++;
-    if (array[i] == 0) {
-      blankRow = row;
-      continue;
+  // Generate the solved puzzle array based on the grid size
+  generateSolvedPuzzle() {
+    const solvedPuzzle = [];
+    for (let i = 0; i < this.gridSize ** 2; i++) {
+      solvedPuzzle.push(i === this.gridSize ** 2 - 1 ? 0 : i + 1);
     }
-    for (let j = i + 1; j < array.length; j++) {
-      if (array[i] > array[j] && array[j] != 0) p++;
-    }
+    return solvedPuzzle;
   }
 
-  if (G % 2 == 0 && blankRow % 2 != 0) return p % 2 != 0;
-  else return p % 2 == 0;
-};
+  // Check if the board is in a solvable state
+  canBoardWin(array) {
+    const startBoardPosition = array.every(
+      (el, i) => el === this.solvedPuzzle[i]
+    );
+    if (startBoardPosition) return false;
 
-//jumble puzzle
-var jumble = () => {
-  let array = solved_puzzle.concat().sort(() => Math.random() - 0.5);
-  if (canBoardWin(array)) {
-    return array;
-  }
-  return jumble();
-};
-
-var A = jumble();
-
-//switch the local
-var switcher = (l) => {
-  moves++;
-  let temp = A[l[0]];
-  A[l[0]] = A[l[1]];
-  A[l[1]] = temp;
-  printer();
-};
-
-//win checker puzzle
-var checker = () => {
-  let flag = true;
-  A.forEach((a, i) => (flag *= a == (i == A.length - 1 ? 0 : i + 1)));
-  if (flag) {
-    var msg = document.getElementById("msg");
-    msg.textContent = "you won";
-    msg.setAttribute("style", "color:gold;font-size:x-large;font-weight:bold");
-  }
-};
-
-//location finder
-var finder = (n) => {
-  let loc = [0, 0];
-  for (let i = 0; i < A.length; i++) {
-    if (A[i] == n) loc[0] = i;
-    else if (A[i] == 0) loc[1] = i;
-  }
-  return loc;
-};
-
-//play
-var play = (n) => {
-  var msg = document.getElementById("msg");
-  msg.innerHTML = "";
-  let l = finder(n);
-  //left-right
-  if (
-    Math.floor(l[0] / G) == Math.floor(l[1] / G) &&
-    Math.abs(l[0] - l[1]) == 1
-  ) {
-    switcher(l);
-  }
-  //up-down
-  else if (Math.abs(l[0] - l[1]) == G) {
-    switcher(l);
-  }
-  //cant switch
-  else {
-    var error = document.getElementById("msg");
-    error.textContent = `cant move : ${n}`;
-    error.style.color = "red";
-  }
-  checker();
-};
-
-//print puzzle
-var printer = () => {
-  //moves
-  var tmoves = document.getElementById("moves");
-  tmoves.textContent = `Total moves : ${moves}`;
-  tmoves.style.color = "blue";
-  //puzzle table
-  var table = document.getElementById("puzzle");
-  table.innerHTML = "";
-  var tableBody = document.createElement("TBODY");
-  table.appendChild(tableBody);
-  let p = 0;
-  for (let i = 0; i < G; i++) {
-    var tr = document.createElement("TR");
-    tableBody.appendChild(tr);
-    for (let j = 0; j < G; j++) {
-      var td = document.createElement("TD");
-      if (A[p] > 0) {
-        td.setAttribute("onclick", `play("${A[p]}")`);
-        td.appendChild(document.createTextNode(A[p]));
-      } else {
-        td.appendChild(document.createTextNode(""));
+    let inversions = 0;
+    let row = 0;
+    let blankRow = 0;
+    for (let i = 0; i < array.length; i++) {
+      if (i % this.gridSize === 0) row++;
+      if (array[i] === 0) {
+        blankRow = row;
+        continue;
       }
-      tr.appendChild(td);
-      p++;
+      for (let j = i + 1; j < array.length; j++) {
+        if (array[i] > array[j] && array[j] !== 0) inversions++;
+      }
+    }
+
+    if (this.gridSize % 2 === 0 && blankRow % 2 !== 0)
+      return inversions % 2 !== 0;
+    return inversions % 2 === 0;
+  }
+
+  // Randomize the puzzle until a solvable configuration is found
+  jumble() {
+    while (true) {
+      const array = this.solvedPuzzle.slice().sort(() => Math.random() - 0.5);
+      if (this.canBoardWin(array)) {
+        return array;
+      }
     }
   }
-};
-printer();
+
+  // Check if a move is valid
+  canMove(number) {
+    const locNum = this.data.indexOf(number);
+    const locZero = this.data.indexOf(0);
+
+    // Left-right movement check
+    if (
+      Math.floor(locNum / this.gridSize) ===
+        Math.floor(locZero / this.gridSize) &&
+      Math.abs(locNum - locZero) === 1
+    ) {
+      return true;
+    }
+
+    // Up-down movement check
+    if (Math.abs(locNum - locZero) === this.gridSize) {
+      return true;
+    }
+
+    return false;
+  }
+
+  // Switch the positions of the number and zero
+  switcher(number) {
+    this.moves++;
+    const locNum = this.data.indexOf(number);
+    const locZero = this.data.indexOf(0);
+
+    // Swap the positions of the number and zero
+    this.data[locNum] = 0;
+    this.data[locZero] = number;
+
+    return true; // Move was successful
+  }
+
+  isCorrect(number) {
+    let i = this.data.indexOf(number);
+    return number === (i === this.data.length - 1 ? 0 : i + 1);
+  }
+
+  // Check if the puzzle is solved
+  isSolved() {
+    return this.data.every(
+      (a, i) => a === (i === this.data.length - 1 ? 0 : i + 1)
+    );
+  }
+}
+
+// DOM Elements
+const movesElem = document.getElementById("moves");
+const puzzleBoard = document.getElementById("puzzle");
+const clockElem = document.getElementById("clock");
+const modelElem = document.getElementById("model");
+
+// Initialize the game
+const puzzle = new Puzzle(4);
+let startTime = 0; // Start time in milliseconds
+let elapsedTime = 0;
+let timerInterval = null; // Interval for updating the clock
+
+function startStopClock(stop = false) {
+  if (stop) {
+    // stop the clock
+    clearInterval(timerInterval);
+    timerInterval = null;
+  } else {
+    startTime = Date.now() - elapsedTime;
+    timerInterval = setInterval(() => {
+      elapsedTime = Date.now() - startTime;
+      // Display the elapsed time in seconds
+      clockElem.innerText = parseInt(elapsedTime / 1000);
+    }, 1000);
+  }
+}
+
+// Function to update the DOM based on the game state
+function updateBoard(movedNum) {
+  movesElem.textContent = puzzle.moves;
+
+  // Clear the puzzle board before adding new elements
+  puzzleBoard.innerHTML = "";
+
+  puzzle.data.forEach((number) => {
+    // Create the outer 'cell' div
+    const cellDiv = document.createElement("div");
+    cellDiv.classList.add("cell");
+
+    // Create the inner 'number-cell' div
+    const numberCellDiv = document.createElement("div");
+    numberCellDiv.classList.add("number-cell");
+    numberCellDiv.id = number;
+
+    // Add the appropriate class based on the number
+    if (number === 0) {
+      numberCellDiv.classList.add("number-cell-empty");
+    }
+    if (puzzle.isCorrect(number)) {
+      numberCellDiv.classList.add("number-cell-correct");
+    }
+
+    // Check if the number should bounce in
+    if (!movedNum || number === movedNum) {
+      numberCellDiv.classList.add("bounceIn");
+      numberCellDiv.addEventListener(
+        "animationend",
+        function handleAnimationEnd() {
+          numberCellDiv.classList.remove("bounceIn");
+          numberCellDiv.removeEventListener("animationend", handleAnimationEnd);
+        }
+      );
+    }
+
+    // Set the text content and onclick attribute
+    numberCellDiv.textContent = number;
+    numberCellDiv.setAttribute("onclick", `play(${number})`);
+
+    // Append the inner 'number-cell' div to the outer 'cell' div
+    cellDiv.appendChild(numberCellDiv);
+
+    // Append the 'cell' div to the puzzle board
+    puzzleBoard.appendChild(cellDiv);
+  });
+}
+
+// Function to handle user moves
+function play(number) {
+  if (puzzle.canMove(number)) {
+    startStopClock();
+    puzzle.switcher(number);
+    updateBoard(number);
+
+    // Check if the puzzle is solved
+    if (puzzle.isSolved()) {
+      startStopClock(true);
+      showModel();
+    }
+  } else {
+    const numberCellDiv = document.getElementById(number);
+    // Remove and add 'jiggle' class for the clicked number
+    numberCellDiv.classList.add("jiggle");
+    numberCellDiv.addEventListener(
+      "animationend",
+      function handleAnimationEnd() {
+        numberCellDiv.classList.remove("jiggle");
+        numberCellDiv.removeEventListener("animationend", handleAnimationEnd);
+      }
+    );
+  }
+}
+
+function showModel() {
+  modelElem.innerHTML = `
+  <div class="modal-wrapper">
+  <div class="modal-card">
+      <div class="modal-container">
+          <div class="text-1">Excellent!</div>
+          <div>It took you <b>${puzzle.moves} moves</b> and <b>${parseInt(
+    elapsedTime / 1000
+  )} seconds</b></div>
+          <div><button class="modal-button" onclick="location.reload()">Play Again</button></div>
+      </div>
+  </div>
+  <div class="modal-bg"></div>
+</div>`;
+}
+// Initialize the board once at the beginning
+updateBoard();

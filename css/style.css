@@ -1,4 +1,4 @@
-@import url(./fonts/font.css);
+@import url(../fonts/font.css);
 
 * {
   box-sizing: border-box;
@@ -147,55 +147,28 @@ body {
   z-index: 10;
   font-size: 75px;
   width: 107px;
+  height: 107px;
+}
+
+.bounceIn {
   transition: transform 0.3s;
   animation-duration: 0.75s;
   animation-name: bounceIn;
-  height: 107px;
-  transform: translate3d(0px, 0px, 0px);
+  transform: translate3d(0, 0, 0);
 }
+
+.jiggle {
+  animation: jiggle 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
 .number-cell-correct {
   background: rgb(232, 138, 69);
 }
 .number-cell-empty {
   display: none;
-}
-
-@keyframes bounceIn {
-  from,
-  20%,
-  40%,
-  60%,
-  80%,
-  to {
-    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
-
-  0% {
-    opacity: 0;
-    transform: scale3d(0, 0, 0);
-  }
-
-  20% {
-    transform: scale3d(1.1, 1.1, 1.1);
-  }
-
-  40% {
-    transform: scale3d(0.9, 0.9, 0.9);
-  }
-
-  60% {
-    opacity: 1;
-    transform: scale3d(1.03, 1.03, 1.03);
-  }
-
-  80% {
-    transform: scale3d(0.97, 0.97, 0.97);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale3d(1, 1, 1);
-  }
 }
 
 .gameinstruction {
@@ -248,4 +221,141 @@ body {
 }
 .profile {
   fill: rgb(61, 41, 99);
+}
+
+@keyframes bounceIn {
+  from,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    transform: scale3d(0, 0, 0);
+  }
+
+  20% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  40% {
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+
+  80% {
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+/* Define the jiggle animation */
+@keyframes jiggle {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+.modal-wrapper {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.modal-card {
+  color: rgb(83, 70, 72);
+  position: relative;
+  z-index: 10000;
+  animation-duration: 0.75s;
+  animation-name: imUdsZ;
+  border-radius: 10px;
+  padding: 15px;
+  min-width: 320px;
+  background-color: rgb(255, 255, 255);
+  height: 200px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  place-content: space-around space-between;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  -webkit-box-pack: justify;
+}
+
+.modal-container .text-1 {
+  font-family: Pacifico, cursive;
+  text-align: center;
+  font-weight: bold;
+  font-size: 37px;
+  color: rgb(87, 64, 124);
+}
+
+.modal-button {
+  font-size: 22px;
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  outline: none;
+  text-decoration: none;
+  line-height: 60px;
+  text-align: center;
+  background-color: rgb(61, 41, 99);
+  color: white;
+  transition: opacity 0.3s;
+}
+
+.modal-bg {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  z-index: 1000;
+  animation-duration: 0.75s;
+  animation-name: fjoQCp;
+  height: 100%;
+  opacity: 0.3;
+  background: rgb(0, 0, 0);
 }
