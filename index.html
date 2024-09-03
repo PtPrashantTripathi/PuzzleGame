@@ -19,7 +19,8 @@
         content="Fifteen-Puzzle game created by PtPrashantTripathi. Test your puzzle-solving skills with this fun game!" />
     <meta name="twitter:image" content="logo.png" />
     <meta name="twitter:card" content="https://ptprashanttripathi.github.io/Fifteen-Puzzle/" />
-    <!--link rel="stylesheet" type="text/css" href="css/style.css" /-->
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-C4NJD8J3MD"></script>
     <script>
@@ -31,86 +32,90 @@
 
         gtag("config", "G-C4NJD8J3MD");
     </script>
-    <link rel="stylesheet" href="css/style.css" />
+
 </head>
 
 <body>
     <div class="container">
-        <div class="headertext"><span>15</span> Puzzle</div>
-        <br />
-        <div>
-            <div class="gamescore">
-                <button class="gamescore_button" onclick="location.reload()">new game</button>
-                <div class="score">
-                    <div class="time">
-                        <div class="score-title">Time</div>
-                        <div class="time-container" id="clock">0s</div>
-                    </div>
-                    <div class="move">
-                        <div class="score-title">Moves</div>
-                        <div class="move-container" id="moves">0</div>
-                    </div>
+
+        <div class="title">
+            <span>15</span> Puzzle
+        </div>
+
+        <div class="gamescore">
+            <button class="gamescore_button" onclick="location.reload()">new game</button>
+            <div class="score">
+                <div class="time">
+                    <div class="score-title">Time</div>
+                    <div class="time-container" id="clock">0s</div>
+                </div>
+                <div class="move">
+                    <div class="score-title">Moves</div>
+                    <div class="move-container" id="moves">0</div>
                 </div>
             </div>
-            <div class="grid" id="puzzle">
-                <div class="cell">
-                    <div class="number-cell">9</div>
-                </div>
-                <div class="cell">
-                    <div class="number-cell">13</div>
-                </div>
-                <div class="cell">
-                    <div class="number-cell">15</div>
-                </div>
-                <div class="cell">
-                    <div class="number-cell">10</div>
-                </div>
-                <div class="cell">
-                    <div class="number-cell">1</div>
-                </div>
-                <div class="cell">
-                    <div class="number-cell">3</div>
-                </div>
-                <div class="cell">
-                    <div class="number-cell">6</div>
-                </div>
-                <div class="cell">
-                    <div class="number-cell">12</div>
-                </div>
-                <div class="cell">
-                    <div class="number-cell">8</div>
-                </div>
-                <div class="cell">
-                    <div class="number-cell">7</div>
-                </div>
-                <div class="cell">
-                    <div class="number-cell">0</div>
-                </div>
-                <div class="cell">
-                    <div class="number-cell">14</div>
-                </div>
-                <div class="cell">
-                    <div class="number-cell">2</div>
-                </div>
-                <div class="cell">
-                    <div class="number-cell">5</div>
-                </div>
-                <div class="cell">
-                    <div class="number-cell">4</div>
-                </div>
-                <div class="cell">
-                    <div class="number-cell">11</div>
-                </div>
+        </div>
+        <div class="grid" id="puzzle">
+            <div class="cell">
+                <div class="number-cell">9</div>
+            </div>
+            <div class="cell">
+                <div class="number-cell">13</div>
+            </div>
+            <div class="cell">
+                <div class="number-cell">15</div>
+            </div>
+            <div class="cell">
+                <div class="number-cell">10</div>
+            </div>
+            <div class="cell">
+                <div class="number-cell">1</div>
+            </div>
+            <div class="cell">
+                <div class="number-cell">3</div>
+            </div>
+            <div class="cell">
+                <div class="number-cell">6</div>
+            </div>
+            <div class="cell">
+                <div class="number-cell">12</div>
+            </div>
+            <div class="cell">
+                <div class="number-cell">8</div>
+            </div>
+            <div class="cell">
+                <div class="number-cell">7</div>
+            </div>
+            <div class="cell">
+                <div class="number-cell">0</div>
+            </div>
+            <div class="cell">
+                <div class="number-cell">14</div>
+            </div>
+            <div class="cell">
+                <div class="number-cell">2</div>
+            </div>
+            <div class="cell">
+                <div class="number-cell">5</div>
+            </div>
+            <div class="cell">
+                <div class="number-cell">4</div>
+            </div>
+            <div class="cell">
+                <div class="number-cell">11</div>
             </div>
         </div>
 
-        <div class="footer">
-            Made with <span style="color: red">❤</span> by Pt. Prashant Tripathi<br />This
-            project is open source, visit
-            <a href="https://github.com/ptprashanttripathi/Fifteen-Puzzle" target="_blank">the repo.</a>
-        </div>
+
+
         <div id="model">
         </div>
+        <footer>
+            Made with <span style="color: red">❤</span> by <a href="https://github.com/ptprashanttripathi/"
+                target="_blank">Pt. Prashant Tripathi</a><br />
+            This project is open source, visit <a href="https://github.com/ptprashanttripathi/Fifteen-Puzzle"
+                target="_blank">the repo.</a>
+        </footer>
     </div>
 
     <script src="js/Fifteen-Puzzle.js"></script>
