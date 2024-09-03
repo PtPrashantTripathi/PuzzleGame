@@ -1,99 +1,119 @@
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Fifteen-Puzzle</title>
-    <meta
-      name="description"
-      content="Fifteen-Puzzle game created by PtPrashantTripathi. Test your puzzle-solving skills with this fun game!"
-    />
-    <meta
-      name="keywords"
-      content="Fifteen-Puzzle, puzzle game, PtPrashantTripathi, logic game, brain teaser"
-    />
+    <meta name="description"
+        content="Fifteen-Puzzle game created by PtPrashantTripathi. Test your puzzle-solving skills with this fun game!" />
+    <meta name="keywords" content="Fifteen-Puzzle, puzzle game, PtPrashantTripathi, logic game, brain teaser" />
     <meta name="author" content="PtPrashantTripathi" />
     <meta property="og:title" content="Fifteen-Puzzle" />
-    <meta
-      property="og:description"
-      content="Fifteen-Puzzle game created by PtPrashantTripathi. Test your puzzle-solving skills with this fun game!"
-    />
+    <meta property="og:description"
+        content="Fifteen-Puzzle game created by PtPrashantTripathi. Test your puzzle-solving skills with this fun game!" />
     <meta property="og:image" content="logo.png" />
-    <meta
-      property="og:url"
-      content="https://ptprashanttripathi.github.io/Fifteen-Puzzle/"
-    />
+    <meta property="og:url" content="https://ptprashanttripathi.github.io/Fifteen-Puzzle/" />
     <meta property="og:type" content="website" />
     <meta name="twitter:title" content="Fifteen-Puzzle" />
-    <meta
-      name="twitter:description"
-      content="Fifteen-Puzzle game created by PtPrashantTripathi. Test your puzzle-solving skills with this fun game!"
-    />
+    <meta name="twitter:description"
+        content="Fifteen-Puzzle game created by PtPrashantTripathi. Test your puzzle-solving skills with this fun game!" />
     <meta name="twitter:image" content="logo.png" />
-    <meta
-      name="twitter:card"
-      content="https://ptprashanttripathi.github.io/Fifteen-Puzzle/8"
-    />
+    <meta name="twitter:card" content="https://ptprashanttripathi.github.io/Fifteen-Puzzle/" />
     <!--link rel="stylesheet" type="text/css" href="css/style.css" /-->
     <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-C4NJD8J3MD"
-    ></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C4NJD8J3MD"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
 
-      gtag("config", "G-C4NJD8J3MD");
+        gtag("config", "G-C4NJD8J3MD");
     </script>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
-  </head>
-  <body>
-    <div class="container center-align">
-      <form>
-        <div class="input-field">
-          <select id="grid" name="grid">
-            <option value="" disabled selected>Select grid size</option>
-            <option value="2">2x2</option>
-            <option value="3">3x3</option>
-            <option value="4">4x4</option>
-            <option value="5">5x5</option>
-          </select>
-          <label>Choose puzzle grid size:</label>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="headertext"><span>15</span> Puzzle</div>
+        <br />
+        <div>
+            <div class="gamescore">
+                <button class="gamescore_button" onclick="location.reload()">new game</button>
+                <div class="score">
+                    <div class="time">
+                        <div class="score-title">Time</div>
+                        <div class="time-container" id="clock">0s</div>
+                    </div>
+                    <div class="move">
+                        <div class="score-title">Moves</div>
+                        <div class="move-container" id="moves">0</div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid" id="puzzle">
+                <div class="cell">
+                    <div class="number-cell">9</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell">13</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell">15</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell">10</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell">1</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell">3</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell">6</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell">12</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell">8</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell">7</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell">0</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell">14</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell">2</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell">5</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell">4</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell">11</div>
+                </div>
+            </div>
         </div>
-        <button
-          class="btn waves-effect waves-light"
-          type="submit"
-          name="action"
-        >
-          Submit
-        </button>
-      </form>
-      <div class="center-align">
-        <div class="card-panel game">
-          <table id="puzzle"></table>
-          <span id="moves"></span>
-          <br />
-          <span id="msg"></span>
+
+        <div class="footer">
+            Made with <span style="color: red">❤</span> by Pt. Prashant Tripathi<br />This
+            project is open source, visit
+            <a href="https://github.com/ptprashanttripathi/Fifteen-Puzzle" target="_blank">the repo.</a>
         </div>
-      </div>
+        <div id="model">
+        </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        var elems = document.querySelectorAll("select");
-        var instances = M.FormSelect.init(elems);
-      });
-    </script>
+
     <script src="js/Fifteen-Puzzle.js"></script>
-  </body>
+</body>
+
 </html>

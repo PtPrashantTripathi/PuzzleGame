@@ -1,0 +1,121 @@
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: none;
+  margin: 0;
+  padding: 0;
+}
+
+:focus,
+button:focus,
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container {
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.headertext {
+  font-family: "Pacifico", cursive;
+  font-size: 4em;
+  margin-bottom: 20px;
+  color: #f8f8f8;
+}
+
+.gamescore {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.gamescore_button {
+  font-size: 1em;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #3d2963;
+  color: rgba(255, 255, 255, 0.8);
+  transition: background-color 0.3s;
+}
+
+.gamescore_button:hover {
+  background-color: #4527a0;
+}
+
+.score {
+  background: #3d2963;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.score div {
+  margin: 0 10px;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 20px;
+  background: #57407c;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.cell {
+  background-color: #3d2963;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  color: white;
+  border-radius: 8px;
+  user-select: none;
+}
+
+.grid[data-size="3"] {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.grid[data-size="4"] {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.grid[data-size="5"] {
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+}
+
+.footer {
+  font-size: 1.2em;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 20px;
+}
+
+.footer a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
