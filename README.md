@@ -1,13 +1,13 @@
-# Fifteen-Puzzle
+# PuzzleGame
 
-![Fifteen-Puzzle Logo](logo.png)
+![PuzzleGame Logo](logo.png)
 
-Fifteen-Puzzle is a classic sliding puzzle game implemented using HTML, CSS, and JavaScript. Test your puzzle-solving skills by rearranging the numbered tiles to form the correct sequence. This game offers an entertaining and brain-teasing experience.
+PuzzleGame is a classic sliding puzzle game implemented using HTML, CSS, and JavaScript. Test your puzzle-solving skills by rearranging the numbered tiles to form the correct sequence. This game offers an entertaining and brain-teasing experience.
 
 ## Play the Game
 
 You can play the game online by visiting the following link:
-[Play Fifteen-Puzzle](https://ptprashanttripathi.github.io/Fifteen-Puzzle/)
+[Play PuzzleGame](https://ptprashanttripathi.github.io/PuzzleGame/)
 
 ## How to Play
 
@@ -26,7 +26,7 @@ You can play the game online by visiting the following link:
 
 ## Contributing
 
-Contributions to Fifteen-Puzzle are welcome! Feel free to open issues for bug reports, feature requests, or improvements. If you'd like to contribute directly, please follow these steps:
+Contributions to PuzzleGame are welcome! Feel free to open issues for bug reports, feature requests, or improvements. If you'd like to contribute directly, please follow these steps:
 
 1. Fork the repository.
 2. Create a new branch for your feature or bug fix.
