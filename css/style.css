@@ -1,10 +1,20 @@
-@import url(../fonts/font.css);
-
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   -webkit-touch-callout: none;
   -webkit-text-size-adjust: none;
+}
+
+:root {
+  --max-width: 350px;
+  --font-name-1: "Clear Sans", Arial, sans-serif;
+  --color-0: #ffffff;
+  --color-1: #e88a45;
+  --color-2: #6ac6b8;
+  --color-3: #eb3678;
+  --color-4: #310a31;
+  --color-6: #57407c;
+  --color-7: #3d2963;
 }
 
 :focus,
@@ -15,14 +25,20 @@ textarea:focus {
 }
 
 body {
-  width: 100%;
+  font-family: var(--font-name-1);
+  background: #ffc801;
+  color: var(--color-0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 0;
   padding: 0;
-  top: 0;
-  left: 0;
-  font-family: Clear Sans, Arial, sans-serif;
-  background: linear-gradient(46deg, #833ab4, #c44d75);
-  color: #fff;
+}
+
+.container {
+  margin: 0 auto;
+  text-align: center;
+  max-width: 520px;
 }
 
 @media screen and (max-width: 520px) {
@@ -31,53 +47,67 @@ body {
   }
 }
 
-.container {
-  width: 520px;
-  margin: 0px auto;
+.title {
+  font-size: 48px;
+  font-weight: bold;
+  display: inline-block;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #323232;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  margin: 0;
 }
 
-.headertext {
-  font-family: Pacifico, cursive;
-  font-size: 60px;
-  padding-left: 7px;
-  margin-left: 2px;
-  background: #833ab4;
-  width: 100%;
-  text-align: center;
-  color: rgb(255, 255, 255);
-  margin-top: 27px;
+.title span {
+  color: #eeeeee;
+  font-size: 1.2em;
 }
 
-.headertext span {
-  font-size: 85px;
-}
-
-.gamescore {
-  padding: 0px 15px;
+.game-mode {
   display: flex;
-  -webkit-box-pack: justify;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-.gamescore_button {
+.game-mode button {
   font-size: 22px;
-  width: 150px;
-  display: block;
-  border-radius: 8px;
-  border: none;
+  width: 120px;
+  height: 60px;
+  border-radius: 12px;
+  border: 2px solid transparent;
   cursor: pointer;
   font-weight: bold;
   outline: none;
-  text-decoration: none;
-  line-height: 60px;
   text-align: center;
-  background-color: rgb(61, 41, 99);
-  color: rgba(255, 255, 255, 0.5);
-  transition: opacity 0.3s;
+  background-color: var(--color-7);
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.game-mode button:hover {
+  opacity: 1;
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.game-mode button:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  opacity: 0.9;
+}
+
+.gamescore {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .score {
-  background: rgb(61, 41, 99);
+  background: var(--color-3);
   display: flex;
   margin-left: 10px;
   padding-left: 15px;
@@ -99,45 +129,55 @@ body {
   text-transform: uppercase;
   font-size: 12px;
   line-height: 12px;
-  color: rgb(255, 255, 255);
+  color: var(--color-0);
 }
+
 .score .move-container,
 .score .best-container,
 .score .time-container {
   font-size: 21px;
   line-height: 25px;
   font-weight: bold;
-  color: rgb(255, 255, 255);
+  color: var(--color-0);
 }
 
 .grid {
-  position: relative;
-  padding: 15px;
-  margin: 5px 0px;
+  --data-size: 4;
+  display: grid;
+  gap: 10px;
+  background: var(--color-6);
+  padding: 10px;
+  border-radius: 10px;
   cursor: default;
   touch-action: none;
-  background: rgb(87, 64, 124);
-  border-radius: 12px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
-  gap: 5px 5px;
   grid-auto-flow: row dense;
-  width: 520px;
-  height: 520px;
+  width: var(--max-width);
+  margin: auto;
+  grid-template-columns: repeat(var(--data-size), 1fr);
+  grid-template-rows: repeat(var(--data-size), 1fr);
 }
 
 .cell {
-  border-radius: 10px;
-  background-color: rgb(61, 41, 99);
+  background-color: var(--color-7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  color: var(--color-0);
+  border-radius: 8px;
+  user-select: none;
 }
-.number-cell {
-  width: 118.75px;
-  height: 118.75px;
 
+.number-cell {
+  width: calc(
+    (var(--max-width) - ((var(--data-size) + 1) * 10px)) / var(--data-size)
+  );
+  height: calc(
+    (var(--max-width) - ((var(--data-size) + 1) * 10px)) / var(--data-size)
+  );
   display: flex;
   border-radius: 10px;
-  background: rgb(106, 198, 184);
+  background: var(--color-2);
   cursor: pointer;
   position: relative;
   user-select: none;
@@ -145,11 +185,11 @@ body {
   justify-content: center;
   -webkit-box-align: center;
   align-items: center;
-  font-family: Pacifico, cursive;
   text-align: center;
+
   font-weight: bold;
   z-index: 10;
-  font-size: 75px;
+  font-size: 40px;
 }
 
 .bounceIn {
@@ -167,25 +207,22 @@ body {
 }
 
 .number-cell-correct {
-  background: rgb(232, 138, 69);
+  background: var(--color-1);
 }
+
 .number-cell-empty {
   display: none;
 }
 
-.footer {
-  font-size: 22px;
-  line-height: 30px;
-  color: rgba(255, 255, 255, 0.5);
-  font-family: "Clear Sans", Arial, sans-serif;
-  text-align: center;
-  bottom: 0px;
-  margin: 11px auto 0px;
+footer {
+  font-size: 1.2em;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 20px;
 }
 
-.footer a {
+footer a {
   text-decoration: none;
-  color: white;
+  color: #fff;
   font-weight: bold;
 }
 
@@ -212,7 +249,7 @@ body {
   border-radius: 10px;
   padding: 15px;
   min-width: 320px;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--color-0);
   height: 200px;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
     rgba(0, 0, 0, 0.22) 0px 15px 12px;
@@ -248,8 +285,8 @@ body {
   text-decoration: none;
   line-height: 60px;
   text-align: center;
-  background-color: rgb(61, 41, 99);
-  color: white;
+  background-color: var(--color-7);
+  color: var(--color-0);
   transition: opacity 0.3s;
 }
 
@@ -304,7 +341,6 @@ body {
   }
 }
 
-/* Define the jiggle animation */
 @keyframes jiggle {
   10%,
   90% {
