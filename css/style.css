@@ -21,7 +21,7 @@ body {
   top: 0;
   left: 0;
   font-family: Clear Sans, Arial, sans-serif;
-  background: #57407c;
+  background: linear-gradient(46deg, #833ab4, #c44d75);
   color: #fff;
 }
 
@@ -41,7 +41,7 @@ body {
   font-size: 60px;
   padding-left: 7px;
   margin-left: 2px;
-  background: linear-gradient(45deg, #833ab4, #f06292);
+  background: #833ab4;
   width: 100%;
   text-align: center;
   color: rgb(255, 255, 255);
@@ -111,26 +111,30 @@ body {
 }
 
 .grid {
-  margin: 5px 0px;
-  grid-template-columns: auto auto auto auto;
-  display: grid;
   position: relative;
   padding: 15px;
+  margin: 5px 0px;
   cursor: default;
   touch-action: none;
   background: rgb(87, 64, 124);
   border-radius: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 5px 5px;
+  grid-auto-flow: row dense;
   width: 520px;
   height: 520px;
 }
+
 .cell {
-  width: 107px;
-  height: 107px;
-  margin-right: 15px;
   border-radius: 10px;
   background-color: rgb(61, 41, 99);
 }
 .number-cell {
+  width: 118.75px;
+  height: 118.75px;
+
   display: flex;
   border-radius: 10px;
   background: rgb(106, 198, 184);
@@ -146,8 +150,6 @@ body {
   font-weight: bold;
   z-index: 10;
   font-size: 75px;
-  width: 107px;
-  height: 107px;
 }
 
 .bounceIn {
@@ -171,56 +173,97 @@ body {
   display: none;
 }
 
-.gameinstruction {
-  display: block;
-  float: right;
-  margin-top: 18px;
+.footer {
   font-size: 22px;
   line-height: 30px;
   color: rgba(255, 255, 255, 0.5);
-}
-.gameinstruction strong {
-  color: rgb(255, 255, 255);
-  font-size: inherit;
-}
-
-.footer {
-  width: 100%;
-  height: 22px;
-  background: rgb(87, 64, 124);
-  z-index: 10;
-  display: flex;
-  -webkit-box-pack: center;
-  justify-content: center;
-  flex-direction: column;
-  margin-bottom: 9px;
-}
-
-.footer .text {
-  color: rgb(255, 255, 255);
   font-family: "Clear Sans", Arial, sans-serif;
   text-align: center;
   bottom: 0px;
   margin: 11px auto 0px;
 }
 
-.footer .text a {
+.footer a {
   text-decoration: none;
   color: white;
   font-weight: bold;
 }
 
-.footer .logos {
+.modal-wrapper {
+  z-index: 10;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
   display: flex;
   -webkit-box-pack: center;
   justify-content: center;
   -webkit-box-align: center;
   align-items: center;
-  width: 100%;
-  margin-top: 29px;
 }
-.profile {
-  fill: rgb(61, 41, 99);
+
+.modal-card {
+  color: rgb(83, 70, 72);
+  position: relative;
+  z-index: 10000;
+  animation-duration: 0.75s;
+  animation-name: imUdsZ;
+  border-radius: 10px;
+  padding: 15px;
+  min-width: 320px;
+  background-color: rgb(255, 255, 255);
+  height: 200px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  place-content: space-around space-between;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  -webkit-box-pack: justify;
+}
+
+.modal-container .text-1 {
+  font-family: Pacifico, cursive;
+  text-align: center;
+  font-weight: bold;
+  font-size: 37px;
+  color: rgb(87, 64, 124);
+}
+
+.modal-button {
+  font-size: 22px;
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  outline: none;
+  text-decoration: none;
+  line-height: 60px;
+  text-align: center;
+  background-color: rgb(61, 41, 99);
+  color: white;
+  transition: opacity 0.3s;
+}
+
+.modal-bg {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  z-index: 1000;
+  animation-duration: 0.75s;
+  animation-name: fjoQCp;
+  height: 100%;
+  opacity: 0.3;
+  background: rgb(0, 0, 0);
 }
 
 @keyframes bounceIn {
@@ -283,79 +326,4 @@ body {
   60% {
     transform: translate3d(4px, 0, 0);
   }
-}
-
-.modal-wrapper {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  align-items: center;
-}
-
-.modal-card {
-  color: rgb(83, 70, 72);
-  position: relative;
-  z-index: 10000;
-  animation-duration: 0.75s;
-  animation-name: imUdsZ;
-  border-radius: 10px;
-  padding: 15px;
-  min-width: 320px;
-  background-color: rgb(255, 255, 255);
-  height: 200px;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-}
-
-.modal-container {
-  display: flex;
-  flex-direction: column;
-  place-content: space-around space-between;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  -webkit-box-pack: justify;
-}
-
-.modal-container .text-1 {
-  font-family: Pacifico, cursive;
-  text-align: center;
-  font-weight: bold;
-  font-size: 37px;
-  color: rgb(87, 64, 124);
-}
-
-.modal-button {
-  font-size: 22px;
-  width: 100%;
-  display: block;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  outline: none;
-  text-decoration: none;
-  line-height: 60px;
-  text-align: center;
-  background-color: rgb(61, 41, 99);
-  color: white;
-  transition: opacity 0.3s;
-}
-
-.modal-bg {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  z-index: 1000;
-  animation-duration: 0.75s;
-  animation-name: fjoQCp;
-  height: 100%;
-  opacity: 0.3;
-  background: rgb(0, 0, 0);
 }

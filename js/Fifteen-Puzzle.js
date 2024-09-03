@@ -4,6 +4,11 @@ class Puzzle {
     this.moves = 0;
     this.solvedPuzzle = this.generateSolvedPuzzle();
     this.data = this.jumble();
+
+    // Timer-related properties
+    this.startTime = null; // Start time in milliseconds
+    this.elapsedTime = 0;
+    this.timerInterval = null;
   }
 
   // Generate the solved puzzle array based on the grid size
@@ -97,6 +102,34 @@ class Puzzle {
       (a, i) => a === (i === this.data.length - 1 ? 0 : i + 1)
     );
   }
+
+  // Start the timer
+  startClock() {
+    if (!this.timerInterval) {
+      this.startTime = Date.now() - this.elapsedTime;
+      this.timerInterval = setInterval(() => {
+        this.elapsedTime = Date.now() - this.startTime;
+        // Update the display in seconds
+        if (clockElem) {
+          clockElem.innerText = parseInt(this.elapsedTime / 1000);
+        }
+      }, 1000);
+    }
+  }
+
+  // Stop the timer
+  stopClock() {
+    clearInterval(this.timerInterval);
+    this.timerInterval = null;
+  }
+
+  // Reset the timer
+  resetClock() {
+    this.elapsedTime = 0;
+    if (clockElem) {
+      clockElem.innerText = "0";
+    }
+  }
 }
 
 // DOM Elements
@@ -107,24 +140,6 @@ const modelElem = document.getElementById("model");
 
 // Initialize the game
 const puzzle = new Puzzle(4);
-let startTime = 0; // Start time in milliseconds
-let elapsedTime = 0;
-let timerInterval = null; // Interval for updating the clock
-
-function startStopClock(stop = false) {
-  if (stop) {
-    // stop the clock
-    clearInterval(timerInterval);
-    timerInterval = null;
-  } else {
-    startTime = Date.now() - elapsedTime;
-    timerInterval = setInterval(() => {
-      elapsedTime = Date.now() - startTime;
-      // Display the elapsed time in seconds
-      clockElem.innerText = parseInt(elapsedTime / 1000);
-    }, 1000);
-  }
-}
 
 // Function to update the DOM based on the game state
 function updateBoard(movedNum) {
@@ -178,13 +193,13 @@ function updateBoard(movedNum) {
 // Function to handle user moves
 function play(number) {
   if (puzzle.canMove(number)) {
-    startStopClock();
+    puzzle.startClock(); // Start the clock on the first move
     puzzle.switcher(number);
     updateBoard(number);
 
     // Check if the puzzle is solved
     if (puzzle.isSolved()) {
-      startStopClock(true);
+      puzzle.stopClock(); // Stop the clock
       showModel();
     }
   } else {
@@ -203,12 +218,12 @@ function play(number) {
 
 function showModel() {
   modelElem.innerHTML = `
-  <div class="modal-wrapper">
+  <div class="modal-wrapper bounceIn">
   <div class="modal-card">
       <div class="modal-container">
           <div class="text-1">Excellent!</div>
           <div>It took you <b>${puzzle.moves} moves</b> and <b>${parseInt(
-    elapsedTime / 1000
+    puzzle.elapsedTime / 1000
   )} seconds</b></div>
           <div><button class="modal-button" onclick="location.reload()">Play Again</button></div>
       </div>
@@ -216,5 +231,6 @@ function showModel() {
   <div class="modal-bg"></div>
 </div>`;
 }
+
 // Initialize the board once at the beginning
 updateBoard();
