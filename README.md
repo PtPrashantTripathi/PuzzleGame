@@ -1,6 +1,6 @@
 # PuzzleGame
 
-![PuzzleGame Logo](logo.png)
+![PuzzleGame Logo](icon/logo.png)
 
 PuzzleGame is a classic sliding puzzle game implemented using HTML, CSS, and JavaScript. Test your puzzle-solving skills by rearranging the numbered tiles to form the correct sequence. This game offers an entertaining and brain-teasing experience.
 
