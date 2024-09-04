@@ -1,77 +1,114 @@
 <html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>Puzzle Game</title>
+        <meta name="description" content="PuzzleGame game created by PtPrashantTripathi. Test your puzzle-solving skills with this fun game!"/>
+        <meta name="keywords" content="PuzzleGame, puzzle game, PtPrashantTripathi, logic game, brain teaser"/>
+        <meta name="author" content="PtPrashantTripathi"/>
+        <meta property="og:title" content="PuzzleGame"/>
+        <meta property="og:description" content="PuzzleGame game created by PtPrashantTripathi. Test your puzzle-solving skills with this fun game!"/>
+        <meta property="og:image" content="icon/logo.png"/>
+        <meta property="og:url" content="https://ptprashanttripathi.github.io/PuzzleGame/"/>
+        <meta property="og:type" content="website"/>
+        <meta name="twitter:title" content="PuzzleGame"/>
+        <meta name="twitter:description" content="PuzzleGame game created by PtPrashantTripathi. Test your puzzle-solving skills with this fun game!"/>
+        <meta name="twitter:image" content="icon/logo.png"/>
+        <meta name="twitter:card" content="https://ptprashanttripathi.github.io/PuzzleGame/"/>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-C4NJD8J3MD"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Puzzle Game</title>
-    <meta name="description"
-        content="PuzzleGame game created by PtPrashantTripathi. Test your puzzle-solving skills with this fun game!" />
-    <meta name="keywords" content="PuzzleGame, puzzle game, PtPrashantTripathi, logic game, brain teaser" />
-    <meta name="author" content="PtPrashantTripathi" />
-    <meta property="og:title" content="PuzzleGame" />
-    <meta property="og:description"
-        content="PuzzleGame game created by PtPrashantTripathi. Test your puzzle-solving skills with this fun game!" />
-    <meta property="og:image" content="icon/logo.png" />
-    <meta property="og:url" content="https://ptprashanttripathi.github.io/PuzzleGame/" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:title" content="PuzzleGame" />
-    <meta name="twitter:description"
-        content="PuzzleGame game created by PtPrashantTripathi. Test your puzzle-solving skills with this fun game!" />
-    <meta name="twitter:image" content="icon/logo.png" />
-    <meta name="twitter:card" content="https://ptprashanttripathi.github.io/PuzzleGame/" />
-
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C4NJD8J3MD"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag("js", new Date());
-
-        gtag("config", "G-C4NJD8J3MD");
-    </script>
-
-</head>
-
-<body>
-    <div class="container">
-
-        <div class="title"><span>15</span> Puzzle</div>
-        <div class="game-mode">
-            <button onclick="newGame(3)">EASY</button>
-            <button onclick="newGame(4)">NORMAL</button>
-            <button onclick="newGame(5)">HARD</button>
-        </div>
-        <div class="gamescore">
-            <div class="score">
-                <div class="time">
-                    <div class="score-title">Time</div>
-                    <div class="time-container" id="clock">0s</div>
+            gtag("config", "G-C4NJD8J3MD");
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="game-header">
+                <div class="title">
+                    Puzzle <span>Game</span>
+                </div>
+                <div class="score">
+                    <div>
+                        Time: <span id="clock">0s</span>
+                    </div>
+                    <div>
+                        Moves: <span id="moves">0</span>
+                    </div>
                 </div>
             </div>
-            <div class="score">
-                <div class="move">
-                    <div class="score-title">Moves</div>
-                    <div class="move-container" id="moves">0</div>
+            <div class="grid" id="puzzle-board">
+                <div class="cell">
+                    <div class="number-cell number-cell-correct" id="1">1</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell number-cell-correct" id="2">2</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell number-cell-correct" id="3">3</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell number-cell-correct" id="4">4</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell number-cell-correct" id="5">5</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell number-cell-correct" id="6">6</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell number-cell-correct" id="7">7</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell number-cell-correct" id="8">8</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell number-cell-correct" id="9">9</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell number-cell-correct" id="10">10</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell number-cell-correct" id="11">11</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell number-cell-correct" id="12">12</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell number-cell-correct" id="13">13</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell number-cell-correct" id="14">14</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell number-cell-correct" id="15">15</div>
+                </div>
+                <div class="cell">
+                    <div class="number-cell number-cell-empty" id="0">0</div>
                 </div>
             </div>
+            <div class="game-mode">
+                <button onclick="gameUI.initializeGame(3)">Easy</button>
+                <button onclick="gameUI.initializeGame(4)">Normal</button>
+                <button onclick="gameUI.initializeGame(5)">Hard</button>
+            </div>
+            <div id="model"></div>
+            <footer>
+                Made with <span style="color: red">❤</span>
+                by
+            <a href="https://github.com/ptprashanttripathi/" target="_blank">Pt. Prashant Tripathi</a>
+                <br/>
+                This project is open source, visit
+            <a href="https://github.com/ptprashanttripathi/PuzzleGame" target="_blank">the repo.</a>
+            </footer>
         </div>
-        <div class="grid" id="puzzle-board">
-        </div>
-        <div id="model">
-        </div>
-        <footer>
-            Made with <span style="color: red">❤</span> by <a href="https://github.com/ptprashanttripathi/"
-                target="_blank">Pt. Prashant Tripathi</a><br />
-            This project is open source, visit <a href="https://github.com/ptprashanttripathi/PuzzleGame"
-                target="_blank">the repo.</a>
-        </footer>
-    </div>
-
-    <script src="js/puzzle.js"></script>
-    <script src="js/script.js"></script>
-</body>
-
+        <script src="js/puzzle.js"></script>
+        <script src="js/gameui.js"></script>
+    </body>
 </html>
