@@ -17,135 +17,89 @@
   --color-7: #3d2963;
 }
 
-:focus,
-button:focus,
-input:focus,
-textarea:focus {
+:focus, button:focus, input:focus, textarea:focus {
   outline: none;
 }
 
 body {
   font-family: var(--font-name-1);
-  background: #ffc801;
+  background: #ffd89b;
   color: var(--color-0);
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0;
   padding: 0;
+  flex-direction: column;
 }
 
 .container {
   margin: 0 auto;
   text-align: center;
   max-width: 520px;
+  
 }
 
-@media screen and (max-width: 520px) {
-  body {
-    font-size: 12px;
-  }
+
+.game-header {
+  text-align: center;
+  margin: 20px auto;
 }
 
 .title {
-  font-size: 48px;
+  font-size: 40px;
   font-weight: bold;
-  display: inline-block;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: #323232;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-  margin: 0;
+  color: #51370f;
+  letter-spacing: 1.5px;
+  /* margin-bottom: 10px; */
 }
 
 .title span {
-  color: #eeeeee;
-  font-size: 1.2em;
+  color: #b77200;
+}
+
+.score {
+  display: flex;
+  justify-content: center;
+  gap: 175px;
+  font-size: 18px;
+  color: #342a1c;
+  margin: 15px auto;
 }
 
 .game-mode {
   display: flex;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 15px;
+  margin: 10px;
 }
 
 .game-mode button {
-  font-size: 22px;
-  width: 120px;
-  height: 60px;
-  border-radius: 12px;
-  border: 2px solid transparent;
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
   cursor: pointer;
   font-weight: bold;
-  outline: none;
-  text-align: center;
-  background-color: var(--color-7);
-  color: rgba(255, 255, 255, 0.7);
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #c48927;
+  color: white;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .game-mode button:hover {
-  opacity: 1;
-  color: #ffffff;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  border-color: rgba(255, 255, 255, 0.2);
+  background-color: #8c621c;
+  transform: translateY(-2px);
 }
 
 .game-mode button:active {
   transform: translateY(0);
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-  opacity: 0.9;
-}
-
-.gamescore {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.score {
-  background: var(--color-3);
-  display: flex;
-  margin-left: 10px;
-  padding-left: 15px;
-  border-radius: 8px;
-}
-
-.score .move,
-.score .best,
-.score .time {
-  position: relative;
-  display: inline-block;
-  text-align: right;
-  width: 97px;
-  padding: 13px 20px 0px 10px;
-  float: right;
-}
-
-.score .score-title {
-  text-transform: uppercase;
-  font-size: 12px;
-  line-height: 12px;
-  color: var(--color-0);
-}
-
-.score .move-container,
-.score .best-container,
-.score .time-container {
-  font-size: 21px;
-  line-height: 25px;
-  font-weight: bold;
-  color: var(--color-0);
 }
 
 .grid {
   --data-size: 4;
   display: grid;
   gap: 10px;
-  background: var(--color-6);
+  background: #985f00;
   padding: 10px;
   border-radius: 10px;
   cursor: default;
@@ -158,26 +112,23 @@ body {
 }
 
 .cell {
-  background-color: var(--color-7);
+  background-color: #472d05;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 2em;
-  color: var(--color-0);
+  color: #51370f;
   border-radius: 8px;
   user-select: none;
 }
 
 .number-cell {
-  width: calc(
-    (var(--max-width) - ((var(--data-size) + 1) * 10px)) / var(--data-size)
-  );
-  height: calc(
-    (var(--max-width) - ((var(--data-size) + 1) * 10px)) / var(--data-size)
-  );
+  width: calc( (var(--max-width) - ((var(--data-size) + 1) * 10px)) / var(--data-size) );
+  height: calc( (var(--max-width) - ((var(--data-size) + 1) * 10px)) / var(--data-size) );
   display: flex;
   border-radius: 10px;
-  background: var(--color-2);
+  background: #f7bc69;
   cursor: pointer;
   position: relative;
   user-select: none;
@@ -186,7 +137,6 @@ body {
   -webkit-box-align: center;
   align-items: center;
   text-align: center;
-
   font-weight: bold;
   z-index: 10;
   font-size: 40px;
@@ -207,7 +157,7 @@ body {
 }
 
 .number-cell-correct {
-  background: var(--color-1);
+  background: #ffab20;
 }
 
 .number-cell-empty {
@@ -215,14 +165,15 @@ body {
 }
 
 footer {
-  font-size: 1.2em;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+
+  color: #342a1c;
   margin-top: 20px;
 }
 
 footer a {
-  text-decoration: none;
-  color: #fff;
+  text-decoration: underline;
+  color: inherit;
   font-weight: bold;
 }
 
@@ -251,8 +202,7 @@ footer a {
   min-width: 320px;
   background-color: var(--color-0);
   height: 200px;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
-    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
 .modal-container {
@@ -304,62 +254,52 @@ footer a {
 }
 
 @keyframes bounceIn {
-  from,
-  20%,
-  40%,
-  60%,
-  80%,
-  to {
-    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  from, 20%, 40%, 60%, 80%, to {
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
   }
 
   0% {
-    opacity: 0;
-    transform: scale3d(0, 0, 0);
+      opacity: 0;
+      transform: scale3d(0, 0, 0);
   }
 
   20% {
-    transform: scale3d(1.1, 1.1, 1.1);
+      transform: scale3d(1.1, 1.1, 1.1);
   }
 
   40% {
-    transform: scale3d(0.9, 0.9, 0.9);
+      transform: scale3d(0.9, 0.9, 0.9);
   }
 
   60% {
-    opacity: 1;
-    transform: scale3d(1.03, 1.03, 1.03);
+      opacity: 1;
+      transform: scale3d(1.03, 1.03, 1.03);
   }
 
   80% {
-    transform: scale3d(0.97, 0.97, 0.97);
+      transform: scale3d(0.97, 0.97, 0.97);
   }
 
   to {
-    opacity: 1;
-    transform: scale3d(1, 1, 1);
+      opacity: 1;
+      transform: scale3d(1, 1, 1);
   }
 }
 
 @keyframes jiggle {
-  10%,
-  90% {
-    transform: translate3d(-1px, 0, 0);
+  10%, 90% {
+      transform: translate3d(-1px, 0, 0);
   }
 
-  20%,
-  80% {
-    transform: translate3d(2px, 0, 0);
+  20%, 80% {
+      transform: translate3d(2px, 0, 0);
   }
 
-  30%,
-  50%,
-  70% {
-    transform: translate3d(-4px, 0, 0);
+  30%, 50%, 70% {
+      transform: translate3d(-4px, 0, 0);
   }
 
-  40%,
-  60% {
-    transform: translate3d(4px, 0, 0);
+  40%, 60% {
+      transform: translate3d(4px, 0, 0);
   }
 }

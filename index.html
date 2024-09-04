@@ -37,31 +37,27 @@
 
 <body>
     <div class="container">
+        <div class="game-header">
+            <div class="title">Puzzle <span>Game</span></div>
+            <div class="score">
+                <div>Time: <span id="clock">0s</span></div>
+                <div>Moves: <span id="moves">0</span></div>
+            </div>
+        </div>
 
-        <div class="title"><span>15</span> Puzzle</div>
-        <div class="game-mode">
-            <button onclick="gameUI.initializeGame(3)">EASY</button>
-            <button onclick="gameUI.initializeGame(4)">NORMAL</button>
-            <button onclick="gameUI.initializeGame(5)">HARD</button>
-        </div>
-        <div class="gamescore">
-            <div class="score">
-                <div class="time">
-                    <div class="score-title">Time</div>
-                    <div class="time-container" id="clock">0s</div>
-                </div>
-            </div>
-            <div class="score">
-                <div class="move">
-                    <div class="score-title">Moves</div>
-                    <div class="move-container" id="moves">0</div>
-                </div>
-            </div>
-        </div>
         <div class="grid" id="puzzle-board">
         </div>
+
+        <div class="game-mode">
+            <button onclick="gameUI.initializeGame(3)">Easy</button>
+            <button onclick="gameUI.initializeGame(4)">Normal</button>
+            <button onclick="gameUI.initializeGame(5)">Hard</button>
+        </div>
+
+
         <div id="model">
         </div>
+
         <footer>
             Made with <span style="color: red">❤</span> by <a href="https://github.com/ptprashanttripathi/"
                 target="_blank">Pt. Prashant Tripathi</a><br />
@@ -72,7 +68,7 @@
 
     <script src="js/puzzle.js"></script>
     <script src="js/script.js"></script>
-    
+
 </body>
 
 </html>
