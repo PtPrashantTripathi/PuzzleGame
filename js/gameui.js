@@ -47,13 +47,15 @@ class GameUI {
 
         // Initialize the game
         this.puzzle = null;
-        this.initializeGame(4); // Starting with grid size 4
+        this.initializeGame(4);
+        // Starting with grid size 4
     }
 
     initializeGame(size) {
         this.puzzle = new Puzzle(size);
         this.modelElem.innerHTML = "";
         this.boardElem.style.setProperty("--data-size", size);
+        this.timer.stop();
         this.timer.reset();
         this.updateBoard();
     }
@@ -103,14 +105,16 @@ class GameUI {
 
     play(number) {
         if (this.puzzle.canMove(number)) {
-            this.timer.start(); // Start the clock on the first move
+            this.timer.start();
+            // Start the clock on the first move
             this.puzzle.switcher(number);
             this.updateBoard(number);
 
             // Check if the puzzle is solved
             if (this.puzzle.isSolved()) {
                 this.showModel();
-                this.timer.stop(); // Stop the clock
+                this.timer.stop();
+                // Stop the clock
             }
         } else {
             const numberCellDiv = document.getElementById(number);
