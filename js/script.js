@@ -1,140 +1,152 @@
-// Initialize the game
-let puzzle = null;
+// Timer class for handling all timer-related functionality
+class Timer {
+    constructor(displayElement) {
+        this.time = 0;
+        this.interval = null;
+        this.displayElement = displayElement;
+    }
 
-// Timer-related properties
-let clockTime = 0;
-let timerInterval = null;
+    start() {
+        if (!this.interval) {
+            this.interval = setInterval(() => {
+                this.time++;
+                this.updateDisplay();
+            }, 1000);
+        }
+    }
 
-// DOM Elements
-const movesElem = document.getElementById("moves");
-const boardElem = document.getElementById("puzzle-board");
-const clockElem = document.getElementById("clock");
-const modelElem = document.getElementById("model");
+    stop() {
+        clearInterval(this.interval);
+        this.interval = null;
+    }
 
-// Start the timer
-function startClock() {
-    if (!timerInterval) {
-        timerInterval = setInterval(() => {
-            clockTime++;
-            // Update the display in seconds
-            clockElem.innerText = clockTime + "s";
-        }, 1000);
+    reset() {
+        this.time = 0;
+        this.updateDisplay();
+    }
+
+    updateDisplay() {
+        this.displayElement.innerText = this.time + "s";
+    }
+
+    getTime() {
+        return this.time;
     }
 }
 
-// Reset the timer
-function stopClock() {
-    clearInterval(timerInterval);
-    timerInterval = null;
-}
+// GameUI class for handling all UI-related tasks and DOM manipulation
+class GameUI {
+    constructor() {
+        // Timer-related properties
+        this.timer = new Timer(document.getElementById("clock"));
 
-function resetClock() {
-    clockTime = 0;
-    clockElem.innerText = "0s";
-}
+        // DOM Elements
+        this.movesElem = document.getElementById("moves");
+        this.boardElem = document.getElementById("puzzle-board");
+        this.modelElem = document.getElementById("model");
 
-// Function to update the DOM based on the game state
-function updateBoard(movedNum) {
-    movesElem.textContent = puzzle.moves;
+        // Initialize the game
+        this.puzzle = null;
+        this.initializeGame(4); // Starting with grid size 4
+    }
 
-    // Clear the puzzle board before adding new elements
-    boardElem.innerHTML = "";
+    initializeGame(size) {
+        this.puzzle = new Puzzle(size);
+        this.modelElem.innerHTML = "";
+        this.boardElem.style.setProperty("--data-size", size);
+        this.timer.reset();
+        this.updateBoard();
+    }
 
-    puzzle.data.forEach((number) => {
-        // Create the outer 'cell' div
-        const cellDiv = document.createElement("div");
-        cellDiv.classList.add("cell");
+    updateBoard(movedNum) {
+        this.movesElem.textContent = this.puzzle.moves;
 
-        // Create the inner 'number-cell' div
-        const numberCellDiv = document.createElement("div");
-        numberCellDiv.classList.add("number-cell");
-        numberCellDiv.id = number;
+        // Clear the puzzle board before adding new elements
+        this.boardElem.innerHTML = "";
 
-        // Add the appropriate class based on the number
-        if (number === 0) {
-            numberCellDiv.classList.add("number-cell-empty");
-        }
-        if (puzzle.isCorrect(number)) {
-            numberCellDiv.classList.add("number-cell-correct");
-        }
+        this.puzzle.data.forEach((number) => {
+            const cellDiv = document.createElement("div");
+            cellDiv.classList.add("cell");
 
-        // Check if the number should bounce in
-        if (!movedNum || number === movedNum) {
-            numberCellDiv.classList.add("bounceIn");
-            numberCellDiv.addEventListener(
-                "animationend",
-                function handleAnimationEnd() {
-                    numberCellDiv.classList.remove("bounceIn");
-                    numberCellDiv.removeEventListener(
-                        "animationend",
-                        handleAnimationEnd
-                    );
-                }
-            );
-        }
+            const numberCellDiv = document.createElement("div");
+            numberCellDiv.classList.add("number-cell");
+            numberCellDiv.id = number;
 
-        // Set the text content and onclick attribute
-        numberCellDiv.textContent = number;
-        numberCellDiv.setAttribute("onclick", `play(${number})`);
-
-        // Append the inner 'number-cell' div to the outer 'cell' div
-        cellDiv.appendChild(numberCellDiv);
-
-        // Append the 'cell' div to the puzzle board
-        boardElem.appendChild(cellDiv);
-    });
-}
-
-// Function to handle user moves
-function play(number) {
-    if (puzzle.canMove(number)) {
-        startClock(); // Start the clock on the first move
-        puzzle.switcher(number);
-        updateBoard(number);
-
-        // Check if the puzzle is solved
-        if (puzzle.isSolved()) {
-            showModel();
-            stopClock(); // Stop the clock
-        }
-    } else {
-        const numberCellDiv = document.getElementById(number);
-        // Remove and add 'jiggle' class for the clicked number
-        numberCellDiv.classList.add("jiggle");
-        numberCellDiv.addEventListener(
-            "animationend",
-            function handleAnimationEnd() {
-                numberCellDiv.classList.remove("jiggle");
-                numberCellDiv.removeEventListener(
-                    "animationend",
-                    handleAnimationEnd
-                );
+            // Add classes based on the number
+            if (number === 0) {
+                numberCellDiv.classList.add("number-cell-empty");
             }
-        );
+            if (this.puzzle.isCorrect(number)) {
+                numberCellDiv.classList.add("number-cell-correct");
+            }
+
+            // Handle bounce animation for moved number
+            if (!movedNum || number === movedNum) {
+                this.addAnimation(numberCellDiv, "bounceIn");
+            }
+
+            numberCellDiv.textContent = number;
+            numberCellDiv.onclick = () => this.play(number);
+
+            cellDiv.appendChild(numberCellDiv);
+            this.boardElem.appendChild(cellDiv);
+        });
+    }
+
+    addAnimation(element, animationClass) {
+        element.classList.add(animationClass);
+        element.addEventListener("animationend", function handleAnimationEnd() {
+            element.classList.remove(animationClass);
+            element.removeEventListener("animationend", handleAnimationEnd);
+        });
+    }
+
+    play(number) {
+        if (this.puzzle.canMove(number)) {
+            this.timer.start(); // Start the clock on the first move
+            this.puzzle.switcher(number);
+            this.updateBoard(number);
+
+            // Check if the puzzle is solved
+            if (this.puzzle.isSolved()) {
+                this.showModel();
+                this.timer.stop(); // Stop the clock
+            }
+        } else {
+            const numberCellDiv = document.getElementById(number);
+            this.addAnimation(numberCellDiv, "jiggle");
+        }
+    }
+
+    showModel() {
+        this.modelElem.innerHTML = `
+      <div class="modal-wrapper bounceIn">
+          <div class="modal-card">
+              <div class="modal-container">
+                  <div class="text-1">You Won!</div>
+                  <div>in <b>${
+                      this.puzzle.moves
+                  } moves</b> and <b>${this.timer.getTime()} seconds</b></div>
+                  <div><button class="modal-button" onclick="gameUI.initializeGame(${
+                      this.puzzle.gridSize
+                  })">Play Again</button></div>
+              </div>
+          </div>
+          <div class="modal-bg"></div>
+      </div>`;
     }
 }
 
-function showModel() {
-    modelElem.innerHTML = `
-  <div class="modal-wrapper bounceIn">
-  <div class="modal-card">
-      <div class="modal-container">
-          <div class="text-1">You Won!</div>
-          <div>in <b>${puzzle.moves} moves</b> and <b>${clockTime} seconds</b></div>
-          <div><button class="modal-button" onclick="newGame(${puzzle.gridSize})">Play Again</button></div>
-      </div>
-  </div>
-  <div class="modal-bg"></div>
-</div>`;
-}
+// Initialize Game UI
+const gameUI = new GameUI();
 
-function newGame(size) {
-    puzzle = new Puzzle(size);
-    modelElem.innerHTML = "";
-    boardElem.style.setProperty("--data-size", size);
-    resetClock();
-    updateBoard();
-}
-
-// Initialize the board once at the beginning
-newGame(4);
+window.addEventListener("load", () => {
+    if (window.location.hash.toLowerCase() === "#win") {
+        console.log("Win function called!");
+        let temp = gameUI.puzzle.solvedPuzzle;
+        gameUI.puzzle.data = temp;
+        gameUI.puzzle.moves = 7;
+        gameUI.timer.time = 9;
+        gameUI.play(temp[temp.indexOf(0) - 1]);
+    }
+});

@@ -40,9 +40,9 @@
 
         <div class="title"><span>15</span> Puzzle</div>
         <div class="game-mode">
-            <button onclick="newGame(3)">EASY</button>
-            <button onclick="newGame(4)">NORMAL</button>
-            <button onclick="newGame(5)">HARD</button>
+            <button onclick="gameUI.initializeGame(3)">EASY</button>
+            <button onclick="gameUI.initializeGame(4)">NORMAL</button>
+            <button onclick="gameUI.initializeGame(5)">HARD</button>
         </div>
         <div class="gamescore">
             <div class="score">
@@ -72,13 +72,7 @@
 
     <script src="js/puzzle.js"></script>
     <script src="js/script.js"></script>
-    <button onclick="win()">win</button>
-    <script>
-        function win(){
-            puzzle.data = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,0,15];
-            play(14);
-        }
-    </script>
+    
 </body>
 
 </html>
