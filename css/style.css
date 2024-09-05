@@ -18,7 +18,7 @@ textarea:focus {
 }
 
 body {
-  font-family: 'Clear Sans', Arial, sans-serif;
+  font-family: "Clear Sans", Arial, sans-serif;
   background: #ffd89b;
   color: #fff;
   display: flex;

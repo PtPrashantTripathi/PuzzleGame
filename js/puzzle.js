@@ -99,3 +99,5 @@ class Puzzle {
     );
   }
 }
+
+export { Puzzle };
