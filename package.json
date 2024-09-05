@@ -5,10 +5,7 @@
   "main": "js/puzzle.js",
   "scripts": {
     "start": "live-server --port=3000",
-    "format": "prettier --write '**/*.{js,html,css}'",
-    "lint": "eslint --ext .js,.mjs,.html,.css .",
-    "lint:fix": "eslint --ext .js,.mjs,.html,.css . --fix",
-    "build": "npm run format && npm run lint"
+    "format": "prettier --write '**/*.{js,html,css}'"
   },
   "repository": {
     "type": "git",
@@ -24,11 +21,6 @@
   },
   "homepage": "https://github.com/ptprashanttripathi/PuzzleGame#readme",
   "devDependencies": {
-    "@eslint/js": "^9.9.1",
-    "eslint": "^9.9.1",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.2.1",
-    "globals": "^15.9.0",
     "live-server": "^1.2.0",
     "prettier": "^3.3.3"
   },
