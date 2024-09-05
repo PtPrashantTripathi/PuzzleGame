@@ -1,4 +1,4 @@
-class Puzzle {
+export default class Puzzle {
   constructor(gridSize = 4) {
     this.gridSize = gridSize;
     this.moves = 0;
@@ -14,28 +14,27 @@ class Puzzle {
     }
     return solvedPuzzle;
   }
-
+  
   // Check if the board is in a solvable state
   canBoardWin(array) {
-    const startBoardPosition = array.every(
-      (el, i) => el === this.solvedPuzzle[i],
-    );
-    if (startBoardPosition) return false;
-
+    const startBoardPosition = array.every((el, i) => el === this.solvedPuzzle[i],);
+    if (startBoardPosition)
+      return false;
     let inversions = 0;
     let row = 0;
     let blankRow = 0;
     for (let i = 0; i < array.length; i++) {
-      if (i % this.gridSize === 0) row++;
+      if (i % this.gridSize === 0)
+        row++;
       if (array[i] === 0) {
         blankRow = row;
         continue;
       }
       for (let j = i + 1; j < array.length; j++) {
-        if (array[i] > array[j] && array[j] !== 0) inversions++;
+        if (array[i] > array[j] && array[j] !== 0)
+          inversions++;
       }
     }
-
     if (this.gridSize % 2 === 0 && blankRow % 2 !== 0)
       return inversions % 2 !== 0;
     return inversions % 2 === 0;
@@ -55,21 +54,14 @@ class Puzzle {
   canMove(number) {
     const locNum = this.data.indexOf(number);
     const locZero = this.data.indexOf(0);
-
     // Left-right movement check
-    if (
-      Math.floor(locNum / this.gridSize) ===
-        Math.floor(locZero / this.gridSize) &&
-      Math.abs(locNum - locZero) === 1
-    ) {
+    if (Math.floor(locNum / this.gridSize) === Math.floor(locZero / this.gridSize) && Math.abs(locNum - locZero) === 1) {
       return true;
     }
-
     // Up-down movement check
     if (Math.abs(locNum - locZero) === this.gridSize) {
       return true;
     }
-
     return false;
   }
 
@@ -78,11 +70,9 @@ class Puzzle {
     this.moves++;
     const locNum = this.data.indexOf(number);
     const locZero = this.data.indexOf(0);
-
     // Swap the positions of the number and zero
     this.data[locNum] = 0;
     this.data[locZero] = number;
-
     return true;
     // Move was successful
   }
@@ -91,13 +81,9 @@ class Puzzle {
     let i = this.data.indexOf(number);
     return number === (i === this.data.length - 1 ? 0 : i + 1);
   }
-
+  
   // Check if the puzzle is solved
   isSolved() {
-    return this.data.every(
-      (a, i) => a === (i === this.data.length - 1 ? 0 : i + 1),
-    );
+    return this.data.every((a, i) => a === (i === this.data.length - 1 ? 0 : i + 1),);
   }
 }
-
-export { Puzzle };
