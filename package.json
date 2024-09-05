@@ -1,30 +1,37 @@
 {
-  "name": "puzzlegame",
-  "version": "2.5.1",
-  "description": "PuzzleGame is a classic sliding puzzle game implemented using HTML, CSS, and JavaScript. Test your puzzle-solving skills by rearranging the numbered tiles to form the correct sequence. This game offers an entertaining and brain-teasing experience.",
-  "main": "js/puzzle.js",
-  "scripts": {
-    "start": "live-server --port=3000",
-    "format": "prettier --write '**/*.{js,html,css}'"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ptprashanttripathi/PuzzleGame.git"
-  },
-  "keywords": [
-    "PuzzleGame"
-  ],
-  "author": "PtPrashantTripathi",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ptprashanttripathi/PuzzleGame/issues"
-  },
-  "homepage": "https://github.com/ptprashanttripathi/PuzzleGame#readme",
-  "devDependencies": {
-    "eslint": "^9.9.1",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.2.1",
-    "live-server": "^1.2.0",
-    "prettier": "^3.3.3"
-  }
+    "name": "puzzlegame",
+    "version": "2.5.1",
+    "description": "PuzzleGame is a classic sliding puzzle game implemented using HTML, CSS, and JavaScript. Test your puzzle-solving skills by rearranging the numbered tiles to form the correct sequence. This game offers an entertaining and brain-teasing experience.",
+    "main": "js/puzzle.js",
+    "scripts": {
+        "start": "live-server --port=3000",
+        "format": "prettier --write '**/*.{js,html,css}'"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ptprashanttripathi/PuzzleGame.git"
+    },
+    "keywords": [
+        "PuzzleGame"
+    ],
+    "author": "PtPrashantTripathi",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/ptprashanttripathi/PuzzleGame/issues"
+    },
+    "homepage": "https://github.com/ptprashanttripathi/PuzzleGame#readme",
+    "devDependencies": {
+        "live-server": "^1.2.0",
+        "prettier": "^3.3.3"
+    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/ptprashanttripathi"
+        },
+        {
+            "type": "opencollective",
+            "url": "https://opencollective.com/ptprashanttripathi"
+        }
+    ]
 }
