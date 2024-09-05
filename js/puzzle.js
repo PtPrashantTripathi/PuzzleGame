@@ -61,7 +61,7 @@ class Puzzle {
         // Left-right movement check
         if (
             Math.floor(locNum / this.gridSize) ===
-                Math.floor(locZero / this.gridSize) &&
+            Math.floor(locZero / this.gridSize) &&
             Math.abs(locNum - locZero) === 1
         ) {
             return true;

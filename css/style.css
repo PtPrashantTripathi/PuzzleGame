@@ -10,7 +10,10 @@
     --data-size: 4;
 }
 
-:focus, button:focus, input:focus, textarea:focus {
+:focus,
+button:focus,
+input:focus,
+textarea:focus {
     outline: none;
 }
 
@@ -113,8 +116,8 @@ body {
 }
 
 .number-cell {
-    width: calc( (var(--max-width) - ((var(--data-size) + 1) * 10px)) / var(--data-size) );
-    height: calc( (var(--max-width) - ((var(--data-size) + 1) * 10px)) / var(--data-size) );
+    width: calc((var(--max-width) - ((var(--data-size) + 1) * 10px)) / var(--data-size));
+    height: calc((var(--max-width) - ((var(--data-size) + 1) * 10px)) / var(--data-size));
     display: flex;
     border-radius: 7px;
     background: #d9b356;
@@ -194,6 +197,7 @@ footer a {
 }
 
 .modal-container {
+    color: #342a1c;
     display: flex;
     flex-direction: column;
     place-content: space-around space-between;
@@ -208,7 +212,7 @@ footer a {
     text-align: center;
     font-weight: bold;
     font-size: 37px;
-    color: rgb(87, 64, 124);
+    color: #805000;
 }
 
 .modal-button {
@@ -223,7 +227,7 @@ footer a {
     text-decoration: none;
     line-height: 60px;
     text-align: center;
-    background-color: #3d2963;
+    background-color: #985f00;
     color: #fff;
     transition: opacity 0.3s;
 }
@@ -242,7 +246,13 @@ footer a {
 }
 
 @keyframes bounceIn {
-    from, 20%, 40%, 60%, 80%, to {
+
+    from,
+    20%,
+    40%,
+    60%,
+    80%,
+    to {
         animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
     }
 
@@ -275,19 +285,25 @@ footer a {
 }
 
 @keyframes jiggle {
-    10%, 90% {
+
+    10%,
+    90% {
         transform: translate3d(-1px, 0, 0);
     }
 
-    20%, 80% {
+    20%,
+    80% {
         transform: translate3d(2px, 0, 0);
     }
 
-    30%, 50%, 70% {
+    30%,
+    50%,
+    70% {
         transform: translate3d(-4px, 0, 0);
     }
 
-    40%, 60% {
+    40%,
+    60% {
         transform: translate3d(4px, 0, 0);
     }
 }
